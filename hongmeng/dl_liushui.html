@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>{$pagetitle['titlepage']}</title>
+	<meta name="keyword" content="{$pagetitle['keyword']}" />
+	<meta name="description" content="{$pagetitle['explain']}" />
+    <link rel="stylesheet" type="text/css" href="css/to.css"/>
+    <link rel="stylesheet" type="text/css" href="css/daili.css"/>
+    <link rel="stylesheet" type="text/css" href="css/tp_page.css"/>
+</head>
+<body>
+<div id="top">
+	{include file="top" /}
+</div>
+
+<div class="body content">
+    <div id="left">
+		{include file="dl_left" /}
+	</div>
+
+    <div class="right">
+
+        <div class="liebie_title style_hei_18">
+            <img src="img/liebie_liushui.png">流水明细
+        </div>
+
+        <div class="bottom">
+
+
+            <!--------列表开始-------->
+
+            <table width="100%" align="center" class="tab_top" border="0" cellspacing="0" cellpadding="0" style="margin-top: 20px;">
+                <tr style="background-color: #FAFAFA;width: 100%;" >
+                    
+                    <td width="">流水单号</td>
+                    <td width="">金额</td>
+                    <td width="">流水类型</td>
+                    <td width="">创建时间</td>
+                </tr>
+                
+                <tr align="left">
+                    <td align="" class="">2020071612201445212589657895</td>
+                    <td align="" style="color: #fd4259;">3.00</td>
+                    <td align="">充值</td>
+                    <td align="" style="padding-left: 12px;color: #999999;">2020-12-12 12:12:12</td>
+                </tr>
+                
+            </table>
+
+
+ 
+
+
+        </div>
+    </div>
+</div>
+
+
+<div class="foot">
+	{include file="footer" /}
+</div>
+
+<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('#top').load('top.html')
+		$('#left').load('huiyuan_left.html')
+		$('.foot').load('footer.html')
+	</script>
+
+
+
+</body>
+</html>

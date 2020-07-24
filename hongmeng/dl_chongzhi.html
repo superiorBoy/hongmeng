@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$pagetitle['titlepage']}</title>
+    <meta name="keyword" content="{$pagetitle['keyword']}"/>
+    <meta name="description" content="{$pagetitle['explain']}"/>
+    <link rel="stylesheet" type="text/css" href="css/to.css"/>
+    <link rel="stylesheet" type="text/css" href="css/daili.css"/>
+    
+    <style>
+        .zhifu_pay{
+            width: 263px;
+            height: 393px;
+            background-color: #ffffff;
+            text-align: center;
+        }
+        .zhifubao_top{
+            text-align: center;
+            padding-top: 19px;
+        }
+        .zhifubao_center{
+            padding:42px  0 20px 0 ;
+            background-color: #0093dd;
+            margin-top: 12px;
+        }
+        .zhifubao_center p{
+            font-size: 20px;
+            color: #ffffff;
+
+        }
+        .zhifubao_bottom{
+
+            display: flex;
+            justify-content: center;
+        }
+        .yizhifu{
+            width: 97px;
+            height: 33px;
+            background-color: #0093dd;
+            border-radius: 5px;
+            margin-right: 13px;
+            line-height: 33px;
+            color: #FFFFFF;
+            margin-top: 26px;
+        }
+        .shaohou{
+            width: 97px;
+            height: 33px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            border: solid 1px #0093dd;
+            line-height: 33px;
+            color: #333333;
+            margin-top: 26px;
+        }
+		.tixian_top{
+			padding: 0;
+		}
+    </style>
+</head>
+<body>
+<div id="top">
+    {include file="top" /}
+</div>
+
+
+<div class="body content">
+    <div id="left">
+        {include file="dl_left" /}
+    </div>
+
+    <div class="right">
+
+        <div class="liebie_title style_hei_18">
+            <img src="img/liebie_chongzhi.png">账户充值
+        </div>
+
+        <div class="bottom chongzhi">
+
+
+            <div class="tixian_top">
+<div class="cz_yue style_hong_20_bold">
+	当前账户余额 0.00元
+</div>
+                
+       <div class="chongzhi_bottom ">
+       
+           
+           <p>注意：手动转账到支付宝，12小时内提交交易号，所转账金额立即到账！</p>
+           <p>支付宝账号：<span class="style_hong_14">510666095@qq.com</span> 红盟网络技术有限公司</p>
+           <p>交易号：<input type="text" name="jiaoyihao" id="" value="" placeholder="请输入充值后的支付宝交易流水号"/></p>
+		   
+		 <div class="chongzhi_bottom_right">
+		 	<img src="img/erweima.png" >
+			<p class="style_qian_14">扫一扫，充值更方便</p>
+		 </div>  
+		   
+       </div>
+        
+                <button type="button" onclick="chongzhi()" class="cz">确认充值</button>
+            </div>
+
+            
+       
+        </div>
+    </div>
+</div>
+
+
+<div class="foot">
+    {include file="footer" /}
+</div>
+<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('#top').load('top.html')
+		$('#left').load('huiyuan_left.html')
+		$('.foot').load('footer.html')
+	</script>
+<script type="text/javascript">
+function chongzhi(){
+	
+	var jiaoyihao=$('input[name="jiaoyihao"]').val()
+	
+}
+
+</script>
+
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

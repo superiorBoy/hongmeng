@@ -1,0 +1,111 @@
+
+<link rel="stylesheet" type="text/css" href="css/gonggong.css" />
+<div class="top">
+    <div class="top_top">
+        <div class="top_top_body content">
+          <p class="top_top_body_left"><a class="kefuqq"><img src="img/top_kefu.png">在线客服 </a> <a href="/index/user/yaoqing.html"><img src="img/top_yaoqing.png">邀请好友
+          	</a> <a href="/index/index/help.html"><img src="img/top_help.png">帮助中心
+          	</a> <a href="/index/index/about.html"> <img src="img/top_lianxi.png">联系我们 </a></p>
+
+            <!-- 登录前 -->
+             <p class="top_denglu_qian">您好，欢迎来到红盟网络！请<a href="login.html" class="active_hong"> 登录</a>&ensp;或&ensp; <a href="register.html" class="active_hong">免费注册</a></p>
+            <!-- 登录后 -->
+            <p class="top_denglu_hou ">hi~欢迎来到红盟网络 <span class="nickname"></span> <span class="vip"></span>  <img src="img/tuichu.png"><span onclick="logout()" class="top_hong">退出</span></p>
+        </div>
+    </div>
+
+</div>
+
+<div class="top_body" style="background-color: #FFFFFF;">
+	
+
+
+<div class=" content top_content">
+
+    <div class="top_content_left">
+        <a href="/"> <img src="img/top_login.png"></a>
+        <div class="top_content_right">
+            <p>一站式企业服务平台</p>
+            <p>免费帮你搭建网站</p>
+        </div>
+    </div>
+
+
+    <div class="top_bottom">
+        <div class=" top_tab">
+        <a href="index.html" class="">首页</a>
+        <a href="javascript:void(0);" class="">分销商城</a>
+        <a href="about.html" class="">关于红盟</a>
+        <a href="help.html" class="">帮助中心</a>
+        <a href="dl_shenqing.html" id="huiyuan_top">会员中心</a>
+		
+        </div>
+    </div>
+
+
+</div>
+</div>
+
+
+<!-- <script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script> -->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".top_tab a").each(function () {
+            $this = $(this);
+            if ($this[0].href == String(window.location)) {
+                $this.addClass("top_tab_active");
+            }
+        });
+
+    });
+
+	// $.ajax({
+	// 	url: '/index/index/islogin',
+	// 	data: {},
+	// 	type: 'POST',
+	// 	dataType: 'json',
+	// 	success: function (result) {
+	// 		var obj = eval(result);
+	// 		if (obj.data.user) {
+	// 			$('.top_denglu_qian').hide();
+	// 			$('.top_denglu_hou').show();
+	// 			$('.nickname').html(obj.data.user['mobile']);
+	// 			$('.nickname').attr('onclick','javascript:location.href="/index/user/user.html"');
+	// 			$('.nickname').attr('style','cursor: pointer');
+	// 			if(obj.data.user['istuanzhang'] == 1){
+	// 				$('.vip').html('vip');
+	// 			}else{
+	// 				$('.vip').html('普通商家');
+	// 			}
+	// 		} else {
+	// 			$('.top_denglu_qian').show();
+ //                $('.top_denglu_hou').hide();
+	// 		}
+	// 	},
+	// 	error: function (err) {
+	// 		layer.msg('网络错误', {time: 2000});
+	// 		return false;
+	// 	}
+	// })
+
+    function logout() {
+        $.ajax({
+            url: '/index/login/logout',
+            data: {},
+            type: 'POST',
+            dataType: 'json',
+            success: function (result) {
+                var obj = eval(result);
+                window.location.href = '/';
+            },
+            error: function (err) {
+                layer.msg('网络错误', {
+                    time: 2000
+                });
+                return false;
+            }
+        })
+    }
+</script>
+

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{$pagetitle['titlepage']}</title>
+		<meta name="keyword" content="{$pagetitle['keyword']}" />
+		<meta name="description" content="{$pagetitle['explain']}" />
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="">
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<style type="text/css">
+			html,
+			body {
+				background-color: #FFFFFF;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="top">
+
+		</div>
+
+		<div class="login_center register_center">
+
+			<div class="login_center_ding content zhuce_center_ding">
+				<div class="login_center_login ">
+
+					<p class="login_center_login_txt">欢迎注册</p>
+
+					<div class="login_phone">
+						<input type="text" value="" placeholder="请输入手机号码" name="phone" />
+					</div>
+					<div class="login_phone">
+						<input type="password" value="" placeholder="请输入密码，6-16位字母/数字/符号组合" name='password' />
+					</div>
+					<div class="login_phone">
+						<input type="password" value="" placeholder="请输入和上面相同的密码" name='ageinpassword' />
+					</div>
+					<div class="login_phone yanzhengma">
+						<input type="text" value="" placeholder="请输入短信验证码" name='yanzheng' />
+						<button>发送验证码</button>
+					</div>
+
+					<div class="xuanze zidong_login">
+						<div class="checkbox">
+							<input id="bt_c2" name="checkbox" type="checkbox" checked="checked">
+							<label for="bt_c2"></label>
+							&nbsp; 我已阅读并同意
+						</div>
+						<span>&nbsp; 服务声明和隐私协议</span>
+					</div>
+					<button type="button" onclick="registrar()">注册</button>
+					<p class="go_zhuce">已有账号？<a href="login.html"><span>直接登陆 <img src="img/go.png"></span></a></p>
+
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="foot">
+			{include file="footer" /}
+		</div>
+
+
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript">
+			$('.foot').load('footer.html')
+			$('#top').load('top.html')
+		</script>
+		<script type="text/javascript">
+			function registrar() {
+				var phone = $("input[name='phone']").val();
+				var password = $("input[name='password']").val();
+				var againpassword = $("input[name='ageinpassword']").val();
+				var code = $("input[name='yanzheng']").val();
+
+
+				if (!$("input[type='checkbox']").is(":checked")) {
+					layer.msg('请勾选协议', {
+						time: 2000
+					});
+					return false;
+				}
+				// console.log({phone:phone,password:password,againpassword:againpassword,code:code});
+				if (phone == '') {
+					layer.msg('请输入手机号码', {
+						time: 2000
+					});
+					return false;
+				}
+				if (password == '') {
+					layer.msg('请输入密码', {
+						time: 2000
+					});
+					return false;
+				}
+				if (againpassword == '') {
+					layer.msg('请输入确认密码', {
+						time: 2000
+					});
+					return false;
+				}
+				// if(code == ''){
+				//     layer.msg('请输入短信验证码',{time:2000});
+				//     return false;
+				// }
+				// $.ajax({
+				//     url: '/index/login/register',
+				//     data: {mobile:phone,password:password,password1:againpassword},
+				//     type: 'POST',
+				//     dataType: 'json',
+				//     beforeSend: function () {
+				//         layer.load(1, {shade: [0.5,'#fff']}); //加载中 0代表加载的风格，支持0-2
+				//     },
+				//     complete: function () {
+				//         layer.closeAll('loading');//关闭加载中
+				//     },
+				//     success: function(result) {
+				//         var obj = eval(result);
+				//         if(obj.code == 0) {
+				//             layer.msg(obj.message,{time:2000});
+				//             window.location.href='/index/user/user.html';
+				//         }else{
+				//             layer.msg(obj.message,{time:2000});
+				//         }
+				//     },
+				//     error: function(err) {
+				//         layer.msg('网络错误',{time:2000});
+				//     }
+				// })
+			}
+			$('.yanzhengma button').click(function(e) {
+				var phone = $("input[name='phone']").val();
+				if (phone == '') {
+					layer.msg('请输入手机号码', {
+						time: 2000
+					});
+					return false;
+				}
+				$(this).addClass("yifasong");
+				// $.ajax({
+				// 	url: '/index/login/sendsms',
+				// 	data: {
+				// 		mobile: phone
+				// 	},
+				// 	type: 'POST',
+				// 	dataType: 'json',
+				// 	success: function(result) {
+				// 		var obj = eval(result);
+				// 		if (obj.code == 0) {
+				// 			layer.msg(obj.message, {
+				// 				time: 2000
+				// 			});
+				// 		} else {
+				// 			layer.msg(obj.message, {
+				// 				time: 2000
+				// 			});
+				// 		}
+				// 	},
+				// 	error: function(err) {
+				// 		layer.msg('网络错误', {
+				// 			time: 2000
+				// 		});
+				// 	}
+				// })
+				var time = 60;
+				$(e.target).attr("disabled", true);
+				var timer = setInterval(function() {
+					if (time == 0) {
+						clearInterval(timer);
+						$(e.target).attr("disabled", false);
+						$(e.target).text("获取验证码");
+						$(e.target).removeClass('yifasong')
+					} else {
+						$(e.target).text(time + "秒重获取");
+						time--;
+					}
+				}, 1000);
+
+			})
+		</script>
+	</body>
+</html>

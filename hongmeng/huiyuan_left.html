@@ -1,0 +1,97 @@
+<div class="daili_left">
+    <a href="javascript:void(0);">
+        <div class="dl_title">
+            <img src="img/huiyaun_zhongxin.png">会员中心
+        </div>
+    </a>
+
+    <ul style="padding-bottom: 90px;">
+        <li>
+            <div class="left_title">
+                <div class="left-icon">
+                    <img src="img/shancheng.png" class="yincang"><img src="img/onshangcheng.png" class="xianshi">
+                </div>
+                货源商城
+            </div>
+            <ul class="yi">
+                <a href="dl_shenqing.html" class="style_hui_14">
+                    <li id="dl_shenqing">申请站点</li>
+                </a>
+
+                <a href="dl_jiexi.html" class="style_hui_14">
+                    <li id="dl_jiexi">域名解析</li>
+                </a>
+   
+				<a href="dl_site.html" class="style_hui_14">
+				    <li id="dl_site">站点管理</li>
+				</a>
+            </ul>
+        </li>
+
+        <li>
+            <div class="left_title">
+                <div class="left-icon">
+                    <img src="img/zhanghao.png" class="yincang"><img src="img/onzhanghao.png" class="xianshi">
+                </div>
+                账号管理
+            </div>
+            <ul class="yi">
+                <a href="dl_ziliao.html" class="style_hui_14">
+                    <li id='dl_ziliao'>用户资料</li>
+                </a>
+                <a href="dl_liushui.html" class="style_hui_14">
+                    <li id="dl_liushui">流水明细</li>
+                </a>
+                <a href="dl_chongzhi.html" class="style_hui_14">
+                    <li id="dl_chongzhi">账户充值</li>
+                </a>
+            </ul>
+        </li>
+
+
+    </ul>
+
+
+</div>
+<style type="text/css">
+	#top{
+		margin-bottom: 20px;
+	}
+	.foot{
+		margin-top: 20px;
+	}
+	
+</style>
+
+<script type="text/javascript">
+	
+	$('#huiyuan_top').addClass('top_tab_active')
+	
+    $('.yi li').click(function () {
+        $('.yi li').removeClass('li_active')
+        $('.left_title').removeClass('ul_active')
+        $(this).addClass('li_active')
+        $('.xianshi').hide()
+        $('.yincang').show()
+        $(this).parents('li').find('.yincang').hide()
+        $(this).parents('li').find('.xianshi').show()
+        $(this).parents('li').find('.left_title').addClass('ul_active')
+    })
+
+
+    $(document).ready(function () {
+        var url = String(window.location)
+        var rightid = url.substring(url.lastIndexOf('/') + 1, url.lastIndexOf('.'));
+        console.log(rightid)
+        $('#' + rightid).addClass('li_active')
+        $('#' + rightid).parents('li').find('.left_title').addClass('ul_active')
+        $('#' + rightid).parents('li').find('.yincang').hide()
+        $('#' + rightid).parents('li').find('.xianshi').show()
+		
+		$('.daili_span').addClass("top_tab_active");
+    });
+
+
+</script>
+
+

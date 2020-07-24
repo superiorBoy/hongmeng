@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$pagetitle['titlepage']}</title>
+    <meta name="keyword" content="{$pagetitle['keyword']}"/>
+    <meta name="description" content="{$pagetitle['explain']}"/>
+    <link rel="stylesheet" type="text/css" href="css/to.css"/>
+    <link rel="stylesheet" type="text/css" href="css/daili.css"/>
+    <style type="text/css">
+		.fenzhan{
+			margin-top: 55px;
+		}
+		.fenzhan_list{
+			margin-bottom: 36px;
+		}
+   
+    </style>
+</head>
+<body>
+<div id="top">
+    {include file="top" /}
+</div>
+
+
+<div class="body content">
+    <div id="left">
+        {include file="dl_left" /}
+    </div>
+
+    <div class="right">
+
+        <div class="liebie_title style_hei_18">
+            <img src="img/liebie_zhandian.png">站点管理
+        </div>
+
+        <div class="bottom">
+            <div class="fenzhan">
+                <div class="fenzhan_list ">
+                    <p><span>域&ensp;&ensp;&ensp;&ensp;名：</span>xiaomeipeizhi.hongvv.com</p>
+                </div>
+
+                <div class="fenzhan_list ">
+                    <p><span>登录账号：</span>15157482210</p>
+                </div>
+                <div class="fenzhan_list">
+                    <p class="fenzhan_list_dizhi"><span>登录密码：</span><input type="text" name="mima" id="" value="45512000" style="width: 200px !important;"/></p>
+                </div>
+
+
+                <button type="button" class="fenzhan_shenqing" onclick="mima()">修改密码</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="foot">
+    {include file="footer" /}
+</div>
+<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('#top').load('top.html')
+		$('#left').load('huiyuan_left.html')
+		$('.foot').load('footer.html')
+	</script>
+<script type="text/javascript">
+    function mima() {
+        var mima = $("input[name='mima']").val()
+        if(mima == ''){
+            layer.msg('请输入修改密码',{time:2000});
+            return false;
+        }
+        $.ajax({
+            url: '/index/user/dl_site',
+            data: {password:mima},
+            type: 'POST',
+            dataType: 'json',
+            beforeSend: function () {
+                layer.load(1, {shade: [0.5,'#fff']}); //加载中 0代表加载的风格，支持0-2
+            },
+            complete: function () {
+                layer.closeAll('loading');//关闭加载中
+            },
+            success: function(result) {
+                var obj = eval(result);
+                if(obj.code == 0) {
+                    layer.msg(obj.message,{time:2000});
+                    history.go(0);
+                }else{
+                    layer.msg(obj.message,{time:2000});
+                }
+            },
+            error: function(err) {
+                layer.msg('网络错误',{time:2000});
+            }
+        })
+    }
+
+
+</script>
+</body>
+</html>

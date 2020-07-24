@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{$pagetitle['titlepage']}</title>
+    <meta name="keyword" content="{$pagetitle['keyword']}"/>
+    <meta name="description" content="{$pagetitle['explain']}"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="">
+    <link rel="stylesheet" type="text/css" href="css/gonggong.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <style type="text/css">
+        html, body {
+            background-color: #FFFFFF;
+        }
+        .login_center {
+            margin-bottom: 20px;
+        }
+        .login_center_login {
+            top: 48px;
+        }
+        .top_center {
+            justify-content: space-between;
+            margin-bottom: 36px !important;
+        }
+        .login_none {
+            display: none !important;
+        }
+        .logon_back {
+            display: inline-block !important;
+        }
+    </style>
+</head>
+<body>
+<div id="top">
+    {include file="top" /}
+</div>
+
+<div class="login_center">
+
+    <div class="login_center_ding content">
+        <div class="login_center_login">
+
+            <p class="login_center_login_txt">欢迎登录</p>
+
+            <div class="login_phone">
+                <img src="img/login_yonghu.jpg"> <input type="text" id="" value="" placeholder="请输入手机号码" name="phone"/>
+            </div>
+            <div class="login_mima">
+                <img src="img/login_mima.jpg"> <input type="password" id="" value="" placeholder="请输入密码" name='password'/>
+            </div>
+
+            <div class="xuanze zidong_login">
+                <div class="checkbox">
+                    <input id="bt_c2" name="checkbox" type="checkbox" checked="checked">
+                    <label for="bt_c2"></label>
+                    自动登录
+                </div>
+
+            </div>
+            <button type="button" onclick="login()">登录</button>
+            <p class="go_zhuce">该没有账号？<a href="register.html"><span>免费注册 <img src="img/go.png"></span></p></a>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="foot">
+    {include file="footer" /}
+</div>
+
+<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$('#top').load('top.html')
+	$('.foot').load('footer.html')
+</script>
+<script type="text/javascript">
+    function login() {
+        var phone = $("input[name='phone']").val()
+        var password = $("input[name='password']").val()
+        console.log($("input[type='checkbox']").is(":checked"))
+        console.log(phone, password)
+        if (phone == '') {
+            layer.msg('请输入手机号', {
+                time: 2000
+            });
+            return false;
+        }
+        if (password == '') {
+            layer.msg('请输入手机号', {
+                time: 2000
+            });
+            return false;
+        }
+        $.ajax({
+            url: '/index/login/login',
+            data: {
+                mobile: phone,
+                password: password
+            },
+            type: 'POST',
+            dataType: 'json',
+            beforeSend: function () {
+                layer.load(1, {
+                    shade: [0.5, '#fff']
+                }); //加载中 0代表加载的风格，支持0-2
+            },
+            complete: function () {
+                layer.closeAll('loading'); //关闭加载中
+            },
+            success: function (result) {
+                var obj = eval(result);
+                if (obj.code == 0) {
+                    window.location.href = '/';
+                } else {
+                    layer.msg(obj.message, {
+                        time: 2000
+                    });
+                    return false;
+                }
+            },
+            error: function (err) {
+                layer.msg('网络错误', {
+                    time: 2000
+                });
+            }
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>{$pagetitle['titlepage']}</title>
+	<meta name="keyword" content="{$pagetitle['keyword']}" />
+	<meta name="description" content="{$pagetitle['explain']}" />
+    <link rel="stylesheet" type="text/css" href="css/to.css"/>
+    <link rel="stylesheet" type="text/css" href="css/daili.css"/>
+</head>
+<body>
+<div id="top">
+	{include file="top" /}
+</div>
+
+
+<div class="body content">
+    <div id="left">
+		{include file="dl_left" /}
+	</div>
+
+    <div class="right">
+
+        <div class="liebie_title style_hei_18">
+            <img src="img/liebie_ziliao.png">我的资料
+        </div>
+
+        <div class="bottom ziliao">
+            <p>账户余额：<span>0.00元</span></p>
+            <p>用&ensp;户&ensp;名：<span>张三</span></p>
+			<p>姓名&ensp;&ensp;&ensp;&ensp;称：<span>李志敏</span></p>
+            <p>手机号码：<span>13122223333</span></p>
+            <p>昵&ensp;&ensp;&ensp;&ensp;称：<input type="text" maxlength="25" name="nicheng" id="" value="" placeholder="长度不超过25个字符"/></p>
+            <p>Q&ensp;&ensp;&ensp;&ensp;&ensp;Q：<input type="number" name="qq" id="" value="2323232"/></p>
+            <p>微&ensp;&ensp;&ensp;&ensp;信：<input type="text" name="weixin" id="" value="13122332323"/></p>
+            <p>电子邮箱：<input type="email" name="youxiang" id="" value="123213@qq.com"/></p>
+            <button type="button" onclick="baocun()">修改保存</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="foot">
+	{include file="footer" /}
+</div>
+<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('#top').load('top.html')
+		$('#left').load('huiyuan_left.html')
+		$('.foot').load('footer.html')
+	</script>
+<script type="text/javascript">
+
+
+    function baocun() {
+
+        var nicheng = $('input[name="nicheng"]').val()
+        var qq = $('input[name="qq"]').val()
+        var weixin = $('input[name="weixin"]').val()
+        var youxiang = $('input[name="youxiang"]').val()
+        if(nicheng==''){
+            layer.msg('请输入昵称',{time:2000});
+            return false;
+        }
+        $.ajax({
+            url: '/index/user/dl_ziliao',
+            data: {nickname:nicheng,email:youxiang,qq:qq,weixin:weixin},
+            type: 'POST',
+            dataType: 'json',
+            beforeSend: function () {
+                layer.load(1, {shade: [0.5,'#fff']}); //加载中 0代表加载的风格，支持0-2
+            },
+            complete: function () {
+                layer.closeAll('loading');//关闭加载中
+            },
+            success: function(result) {
+                var obj = eval(result);
+                if(obj.code == 0) {
+                    layer.msg(obj.message,{time:2000});
+                    setTimeout(function () {
+                        history.go(0)
+                    },1000);
+                }else{
+                    layer.msg(obj.message,{time:2000});
+                    return false;
+                }
+            },
+            error: function(err) {
+                layer.msg('网络错误',{time:2000});
+            }
+        })
+    }
+
+
+</script>
+
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

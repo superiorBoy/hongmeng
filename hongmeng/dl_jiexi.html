@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>{$pagetitle['titlepage']}</title>
+	<meta name="keyword" content="{$pagetitle['keyword']}" />
+	<meta name="description" content="{$pagetitle['explain']}" />
+    <link rel="stylesheet" type="text/css" href="css/to.css"/>
+    <link rel="stylesheet" type="text/css" href="css/daili.css"/>
+</head>
+<body>
+<div id="top">
+	{include file="top" /}
+</div>
+
+
+<div class="body content">
+    <div id="left">
+		{include file="dl_left" /}
+	</div>
+
+    <div class="right">
+
+        <div class="liebie_title style_hei_18">
+            <img src="img/liebie_jiexi.png">域名解析
+        </div>
+
+        <div class="bottom style_hei_14 jiexi">
+   
+   <p class="jiexi_title style_hei_16_bold">Cms域名解析教程 </p>
+            <p >如果您满足以下条件可以自定义Cms域名</p>
+            <p>域名已备案 并且在阿里云备案</p>
+          <p>已开通Cms专业版 仅专业版支持自定义域名</p>
+<p>域名已按照已下教程解析到好淘客dns服务器</p>
+<p>CNAME 别名解析教程如下：</p>
+<p class="jiexi_title style_hei_16_bold"><span class="style_hong_16">第一步选择记录类型： CNAME</span><span class="style_hui_14">(国内虽然有很多服务商 大致操作相同)</span> </p>
+<img src="img/jiexi1.png" >
+<p class="jiexi_title style_hei_16_bold"><span class="style_hong_16">第二步输入地址：</span> </p>
+<p class="style_hei_16_bold"> 如果您备案在阿里云：请输入：cms1.lemxx.com</p>
+<p class="style_hei_16_bold"> 如果您备案在腾讯云：请输入：cms2.lemxx.com</p>
+<p class="style_hei_16_bold"> 如果您域名未备案：请输入：  cms3.lemxx.com</p>
+<p class="style_hei_14 jiexi_tishi">（未备案域名采用香港服务器 访问速度有所影响）</p>
+<img src="img/jiexi2.png" >
+<p>输入完成之后 可以静等解析生效：一般10分钟 - 24小时内 不同服务商所选线路不同</p>
+<p class="style_hei_16_bold"> 为什么需要别名解析？</p>
+<p>好淘客拥有数台服务器 并且采用了负载均衡 系统会自动分配</p>
+<p>当服务器出现故障或者迁移的时候 不会影响网站正常运行</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="foot">
+	{include file="footer" /}
+</div>
+
+<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('#top').load('top.html')
+		$('#left').load('huiyuan_left.html')
+		$('.foot').load('footer.html')
+	</script>
+</body>
+</html>

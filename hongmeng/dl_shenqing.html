@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{$pagetitle['titlepage']}</title>
+		<meta name="keyword" content="{$pagetitle['keyword']}" />
+		<meta name="description" content="{$pagetitle['explain']}" />
+		<link rel="stylesheet" type="text/css" href="css/city-picker.css" />
+		<link rel="stylesheet" type="text/css" href="css/to.css" />
+		<link rel="stylesheet" type="text/css" href="css/selectFilter.css" />
+		<link rel="stylesheet" type="text/css" href="css/daili.css" />
+		<link rel="stylesheet" type="text/css" href="css/tp_page.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="css/main.css" /> -->
+		<style type="text/css">
+			.bottom{
+				padding-bottom: 67px;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<div id="top">
+			{include file="top" /}
+		</div>
+
+
+		<div class="body content">
+			<div id="left">
+				{include file="dl_left" /}
+			</div>
+
+			<div class="right">
+
+				<div class="liebie_title style_hei_18">
+					<img src="img/liebie_jiexi.png">申请代理
+				</div>
+
+				<div class="bottom">
+
+					<div class="shenqing_title">
+
+						<div class="shenqing_title_top">
+							<p class="shenqing_title_top_active">1</p><span class="dierbu_span"></span>
+							<p class="dierbu">2</p><span class="disanbu_span"></span>
+							<p class="disanbu">3</p><span class="disibu_span"></span>
+							<p class="disibu">4</p>
+						</div>
+						<div class="shenqing_title_bottom">
+							<span class="active_hong">填写申请资料&nbsp;</span>
+							<span class="dierbu_txt">等待审核&nbsp; &nbsp; &nbsp; &nbsp; </span>
+							<span class="disanbu_txt">审核通过&nbsp;</span>
+							<span class="disibu_txt">缴纳保证金&nbsp; &nbsp; </span>
+						</div>
+					</div>
+
+
+					<!-- 第一步 -->
+
+					<div class="fenzhan">
+						<div class="fenzhan_list">
+							<p><span>域名：</span><input type="text" name="yuming" id="" value="" /></p>
+
+						</div>
+						<div class="fenzhan_list">
+
+							<p class="fenzhan_list_beian"><span>备案号：</span><input type="text" name="beianhao" id="" value="" />
+							</p>
+						</div>
+						<div class="fenzhan_list">
+							<p><span>姓名：</span><input type="text" name="xingming" id="" value="" /></p>
+
+						</div>
+						<div class="fenzhan_list">
+
+							<p><span>联系电话：</span><input type="text" name="phone" id="" value="" /></p>
+						</div>
+						<div class="fenzhan_list fenzhan_list_shenfennum">
+							<p><span>身份证号：</span><input type="text" name="shenfennum" id="" value="" /></p>
+						</div>
+
+	               
+	
+						<div class="fenzhan_list">
+							<p><span>联系QQ：</span><input type="text" name="qq" id="" value="" /></p>
+
+						</div>
+						<div class="fenzhan_list">
+
+							<p><span>联系微信：</span><input type="text" name="weixin" id="" value="" /></p>
+						</div>
+						<div class="fenzhan_list">
+						
+							<p><span>站点名称：</span><input type="text" name="zhandian" id="" value="" /></p>
+						</div>
+						<div class="fenzhan_list fenzhan_list_youshi">
+							<p><span>站点描述：</span><textarea rows="" cols=""></textarea></p>
+
+						</div>
+	                  <div class="fenzhan_list"> 
+						
+							<p><span>登录账号：</span><input type="text" name="zhanghao" id="" value="" /></p>
+						</div>
+	                  <div class="fenzhan_list"> 
+						
+							<p><span>登录密码：</span><input type="text" name="mima" id="" value="" /></p>
+						</div>
+						<button type="button" class="fenzhan_shenqing" onclick="shenqing()">提交申请</button>
+
+					</div>
+
+					<!-- 第二步 -->
+
+					<div class="shenhe style_hei_14">
+						<img src="img/dai_shenhe.png">
+						<p class="style_hei_14_bold">您提交的申请正在审核中！</p>
+						<p>审核时间需要2个工作日，请保留您的账户</p>
+						<p>您也可以在【会员中心】—【货源商城】—【<span class="style_hong_14">站点管理</span>】中查看进度！</p>
+					</div>
+					<!-- 第三步 -->
+
+
+					<!-- 审核通过 -->
+					<div class="sanbu_tongguo style_hei_14">
+						<img src="img/shenhe_tongguo.png">
+						<p class="style_hei_14_bold">恭喜~您提交的审核已通过~！</p>
+						<p>为了更好的体验，对代理模式管理，请您缴纳保证金</p>
+						<p>请前去缴纳保证金【<a href="/index/agent/dl_yucunkuan.html" class="style_hong_14">缴纳保证金</a>】</p>
+					</div>
+					<!-- 审核失败 -->
+					<div class="sanbu_shibai style_hei_14">
+						<img src="img/shenhe_shibai.png">
+						<p class="style_hei_14_bold">嗷~您提交的审核未通过验证~</p>
+						<p class="shibai_reason">失败原因：上传身份证姓名和填写的姓名不一致，请仔细核对</p>
+						<p>返回申请界面重新填写【<a href="dl_shenqing.html" class="style_hong_14">申请站点</a>】申请资料</p>
+					</div>
+
+
+					<!-- 第四步 -->
+					<div class="sibu style_qian_14">
+						<!--    <p class="shenhe_user"><span>{$user['nickname']}</span>,您当前是{if $user['istuanzhang'] ==2}<span>普通会员</span>{else}<span>vip</span>{/if}</p>
+                <div class="leixing">
+                    <span class="style_hui_14">服务类型</span>
+                    <p class="leixing_active">普通会员</p>
+                    <p>VIP会员</p>
+                </div>
+                <div class="zhouqi">
+                    <span class="style_hui_14">购买周期</span>
+                    <p class="zhouqi_active">月费</p>
+                    <p>季度费</p>
+                    <p>季度费</p>
+                    <p>季度费</p>
+                    <p>季度费</p>
+                </div> -->
+						<p class="sibu_yifu_jine ">当前账户余额： <span>0 </span> 元</p>
+                          <p class="sibu_pay_leixing">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;付款类型： <img src="img/zhifubao.png" ><span>支付宝</span></p>
+						<p class="shenhe_jine">&ensp;&ensp;&ensp;&ensp;应付保证金金额：<span class="style_hong_20">3000元</span></p>
+						<button type="button" class="style_bai_14">立即支付</button>
+						<!-- <p class="style_hui_12 sibu_tishi">提醒：保证金对买家来说，是一种进货信任和保障的象征让买家买的放心！保证金的金额越高，买家对其的信任度更高。</p> -->
+					</div>
+
+
+					<!--第五步 已支付保证金显示 -->
+
+			<!-- 		       <div class="yijiaofei style_hei_14">
+                <img src="img/pay_chenggong.png" >
+                <p class="">哇~您已成功开通网站~</p>
+				<p>去了解一下各种模块的内容吧~</p>
+                <p>网址：www.xiaomeipeizhi.hongvv.com</p>
+                <p><a href="login.html" class="style_hong_14">前去登录</a>站点吧吧</p>
+				<p class="">当前已缴纳保证金<span class="style_hong_14">1000</span>元</p>
+				<button type="button" class="style_bai_14">解冻保证金</button>
+            </div> -->
+
+
+				</div>
+			</div>
+		</div>
+
+
+		<div class="foot">
+			{include file="footer" /}
+		</div>
+
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/city-picker.data.js"></script>
+	<script src="js/city-picker.js"></script>
+	<script src="js/main.js"></script>
+	<script type="text/javascript">
+		$('#top').load('top.html')
+		$('#left').load('huiyuan_left.html')
+		$('.foot').load('footer.html')
+		
+	</script>
+	
+		<script type="text/javascript">
+			function shenqing() {
+			
+				var yuming = $("input[name='yuming']").val()
+				var beianhao = $("input[name='beianhao']").val()
+				var name = $("input[name='xingming']").val()
+				var phone = $("input[name='phone']").val()
+				var shenfennum = $("input[name='shenfennum']").val()
+	
+				var qq = $("input[name='qq']").val()
+				var weixin = $("input[name='weixin']").val()
+				var miaoshu = $("textarea").val()
+				var zhanghao = $("input[name='zhanghao']").val()
+				var mima = $("input[name='mima']").val()
+				if (yuming == '') {
+					layer.msg('请输入域名', {
+						time: 2000
+					});
+					return false;
+				}
+				if (beianhao == '') {
+					layer.msg('请输入备案号', {
+						time: 2000
+					});
+					return false;
+				}
+				if (name == '') {
+					layer.msg('请输入姓名', {
+						time: 2000
+					});
+					return false;
+				}
+				if (phone == '') {
+					layer.msg('请输入联系电话', {
+						time: 2000
+					});
+					return false;
+				}
+				if (shenfennum == '') {
+					layer.msg('请输入身份证号', {
+						time: 2000
+					});
+					return false;
+				}
+
+				if (qq == '') {
+					layer.msg('请输入联系qq', {
+						time: 2000
+					});
+					return false;
+				}
+				if (weixin == '') {
+					layer.msg('请输入联系微信', {
+						time: 2000
+					});
+					return false;
+				}
+				if (youshi == '') {
+					layer.msg('请输入描述', {
+						time: 2000
+					});
+					return false;
+				}
+				if (zhanghao == '') {
+					layer.msg('请输入账号', {
+						time: 2000
+					});
+					return false;
+				}
+				if (mima == '') {
+					layer.msg('请输入密码', {
+						time: 2000
+					});
+					return false;
+				}
+				// console.log(youshi)
+				$.ajax({
+					url: '/index/agent/dl_shenqing',
+					data: {
+						yuming: yuming,
+						beianhao: beianhao,
+						name: name,
+						phone: phone,
+						shenfennum: shenfennum,
+						dizhi: sheng+shi+qu+' '+dizhi,
+						qq: qq,
+						weixin: weixin,
+						youshi: youshi
+					},
+					type: 'POST',
+					dataType: 'json',
+					beforeSend: function() {
+						layer.load(1, {
+							shade: [0.5, '#fff']
+						}); //加载中 0代表加载的风格，支持0-2
+					},
+					complete: function() {
+						layer.closeAll('loading'); //关闭加载中
+					},
+					success: function(result) {
+						var obj = eval(result);
+						if (obj.code == 0) {
+							$('.fenzhan').hide()
+							$('.shenhe').show()
+							$('.dierbu').addClass('shenqing_title_top_active')
+							$('.dierbu_txt').addClass('active_hong')
+							$('.dierbu_span').addClass('shenqing_title_top_span')
+						} else {
+							layer.msg(obj.message, {
+								time: 2000
+							});
+							return false;
+						}
+					},
+					error: function(err) {
+						layer.msg('网络错误', {
+							time: 2000
+						});
+					}
+				})
+			}
+
+
+			$('.leixing p').click(function() {
+
+				$(this).addClass('leixing_active').siblings().removeClass('leixing_active')
+
+			})
+			$('.zhouqi p').click(function() {
+
+				$(this).addClass('zhouqi_active').siblings().removeClass('zhouqi_active')
+
+			})
+
+			$('.sanbu_tongguo p span').click(function() {
+				//去缴纳保证金
+				$('.sanbu_tongguo').hide()
+				$('.sibu').show()
+				$('.dierbu').addClass('shenqing_title_top_active')
+				$('.disanbu').addClass('shenqing_title_top_active')
+				$('.dierbu_txt').addClass('active_hong')
+				$('.disanbu_span').addClass('shenqing_title_top_span')
+				$('.disanbu_txt').addClass('active_hong')
+				$('.dierbu_span').addClass('shenqing_title_top_span')
+				$('.disibu').addClass('shenqing_title_top_active')
+				$('.disibu_txt').addClass('active_hong')
+				$('.disibu_span').addClass('shenqing_title_top_span')
+			});
+
+			$('.sanbu_shibai p span').click(function() {
+				//审核失败重新填写
+				$('.sanbu_shibai').hide()
+				$('.fenzhan').show()
+				$('.dierbu').removeClass('shenqing_title_top_active')
+				$('.disanbu').removeClass('shenqing_title_top_active')
+				$('.dierbu_txt').removeClass('active_hong')
+				$('.disanbu_span').removeClass('shenqing_title_top_span')
+				$('.disanbu_txt').removeClass('active_hong')
+				$('.dierbu_span').removeClass('shenqing_title_top_span')
+			});
+		</script>
+
+
+		<!-- <script type="text/javascript">
+			{if $zhan['state'] == 1}
+			//审核中
+			$('.fenzhan').hide()
+			$('.shenhe').show()
+			$('.dierbu').addClass('shenqing_title_top_active')
+			$('.dierbu_txt').addClass('active_hong')
+			$('.dierbu_span').addClass('shenqing_title_top_span')
+			{elseif $zhan['state'] == 2}
+			{if $zhan['is_pay'] == 0}
+			// 审核通过
+			$('.fenzhan').hide()
+			$('.sanbu_tongguo').show()
+			$('.dierbu').addClass('shenqing_title_top_active')
+			$('.disanbu').addClass('shenqing_title_top_active')
+			$('.dierbu_txt').addClass('active_hong')
+			$('.disanbu_span').addClass('shenqing_title_top_span')
+			$('.disanbu_txt').addClass('active_hong')
+			$('.dierbu_span').addClass('shenqing_title_top_span')
+			{else}
+			// 保证金已缴纳
+			$('.fenzhan').hide()
+			$('.sibu').show()
+			$('.dierbu').addClass('shenqing_title_top_active')
+			$('.disanbu').addClass('shenqing_title_top_active')
+			$('.dierbu_txt').addClass('active_hong')
+			$('.disanbu_span').addClass('shenqing_title_top_span')
+			$('.disanbu_txt').addClass('active_hong')
+			$('.dierbu_span').addClass('shenqing_title_top_span')
+			$('.disibu').addClass('shenqing_title_top_active')
+			$('.disibu_txt').addClass('active_hong')
+			$('.disibu_span').addClass('shenqing_title_top_span')
+			{/if}
+				{elseif $zhan['state'] == 3}
+		  // 审核失败
+		    $('.fenzhan').hide()
+		    $('.sanbu_shibai').show()
+		    $('.dierbu').addClass('shenqing_title_top_active')
+		    $('.disanbu').addClass('shenqing_title_top_active')
+		    $('.dierbu_txt').addClass('active_hong')
+		    $('.disanbu_span').addClass('shenqing_title_top_span')
+		    $('.disanbu_txt').addClass('active_hong')
+		    $('.dierbu_span').addClass('shenqing_title_top_span')
+		        $('.shibai_reason').html('失败原因：{$zhan['reason']}');
+		    {/if}
+
+
+
+						// 第二步
+
+						// $('.dierbu').addClass('shenqing_title_top_active')
+						// $('.dierbu_txt').addClass('active_hong')
+						// $('.dierbu_span').addClass('shenqing_title_top_span')
+						// $('.shenqing_title_bottom span')
+						// 第三步
+
+						// $('.dierbu').addClass('shenqing_title_top_active')
+						// $('.disanbu').addClass('shenqing_title_top_active')
+						// $('.dierbu_span').addClass('shenqing_title_top_span')
+						// $('.disanbu_span').addClass('shenqing_title_top_span')
+						// $('.dierbu_txt').addClass('active_hong')
+						// $('.disanbu_txt').addClass('active_hong')
+						// 第四步
+
+						// $('.dierbu').addClass('shenqing_title_top_active')
+						// $('.disanbu').addClass('shenqing_title_top_active')
+						// $('.disibu').addClass('shenqing_title_top_active')
+						// $('.dierbu_span').addClass('shenqing_title_top_span')
+						// $('.disanbu_span').addClass('shenqing_title_top_span')
+						// $('.disibu_span').addClass('shenqing_title_top_span')
+						// $('.dierbu_txt').addClass('active_hong')
+						// $('.disanbu_txt').addClass('active_hong')
+						// $('.disibu_txt').addClass('active_hong')
+		</script> -->
+	</body>
+</html>
